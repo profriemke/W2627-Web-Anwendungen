@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <h1>{{ title }}</h1>
+
+    {{ text }}
+    @if(anzeigeFreunde == true)
+    <ul>
+        @each(freund in freunde)
+        <li>{{ freund }}</li>
+        @end
+    </ul>
+    @else
+        zur Zeit keine Freunde<br>
+    @end
+    Zahl: {{ zahl }}
+    <br>
+    Doppelte Zahl: {{ zahl *2 }}
+
+    <br>
+    <ul>
+        @each((freund, index) in freunde)
+        <li>{{ index+1 }}. {{ freund }}</li>
+        @end
+    </ul>
+</body>
+
+</html>

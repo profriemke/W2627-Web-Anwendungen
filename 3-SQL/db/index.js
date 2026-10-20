@@ -11,5 +11,6 @@ let firstName = 'Takuma'
 const customer = db.prepare('SELECT * FROM customer WHERE first_name=? LIMIT ?').all(firstName, limit)
 
 
+
 console.log(customer)
 db.close();
