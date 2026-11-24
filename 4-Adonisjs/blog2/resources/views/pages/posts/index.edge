@@ -10,10 +10,7 @@
     <a href="/admin/posts/create">neuer Post</a>
     @each(post in posts)
     <h2>{{ post.title }}</h2>
-    <i>{{ post.teaser }}</i>
-    <p>{{ post.text}}
-        <br>{{ post.author }}
-    </p>
+    <i>{{ post.teaser }} <a href="/posts/{{ post.id}}">mehr...</a></i>
     @end
 </body>
 </html>

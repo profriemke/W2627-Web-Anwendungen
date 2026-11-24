@@ -19,6 +19,8 @@ router.get('/', async ({ view })=>{
   const posts = await db.from('post')
                         .select('*')
                         .orderBy('id', 'desc')
+  console.log(posts)
+  console.log( await view.render('pages/posts/index', { posts: posts}))
 
   return view.render('pages/posts/index', { posts: posts})
 } )
@@ -36,6 +38,7 @@ router.post('/admin/posts/created', async ({ request, response })=>{
   if(!title || !teaser || !text || !author ){
     return 'Fehler!'
   }
+  
   await db.table('post')
           .insert(
             {
@@ -50,3 +53,14 @@ router.post('/admin/posts/created', async ({ request, response })=>{
   return response.redirect('/')
 })
 
+
+router.get('/posts/:id', async({view, params})=>{
+
+  const post = await db.from('post')
+                 .select('*')
+                 .where('id', params.id)
+                 .first()
+  console.log(post)
+  return view.render('pages/posts/show', { post })
+
+})
