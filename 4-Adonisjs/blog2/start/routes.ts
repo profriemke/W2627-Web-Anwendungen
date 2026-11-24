@@ -54,6 +54,7 @@ router.post('/admin/posts/created', async ({ request, response })=>{
 })
 
 
+
 router.get('/posts/:id', async({view, params})=>{
 
   const post = await db.from('post')
@@ -63,4 +64,29 @@ router.get('/posts/:id', async({view, params})=>{
   console.log(post)
   return view.render('pages/posts/show', { post })
 
+})
+
+
+
+router.get('/session/text', async ({ session }) => {
+  session.put('text', 'Riemke war da')
+  return 'Wert gesetzt'
+})
+
+router.get('/session/text/show', async ({ session }) => {
+  return session.get('text')
+})
+
+router.get('/session/counter', async ({ view, session }) => {
+  const count = session.get('count')
+
+  if (count === undefined) {
+    session.put('count', 1)
+  } else {
+    session.put('count', count + 1)
+  }
+
+  return view.render('pages/session/counter', {
+    count: session.get('count'),
+  })
 })

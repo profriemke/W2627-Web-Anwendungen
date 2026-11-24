@@ -9,6 +9,7 @@
 
 <body>
     <h1>{{ post.title }}</h1>
+    <span>{{ new Date(post.date).toLocaleDateString() }}</span><br>
     <i>{{ post.teaser }}</i>
     <p>{{ post.text}}
         <br>{{ post.author }}
